@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>GSAP Marquee Demo & Documentation</title>
+		<style>
+			/* --- General Styles --- */
+			body {
+			font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji';
+			margin: 0;
+			padding: 0;
+			background: #f4f6f8;
+			color: #333;
+			}
+			/* Hero banner */
+			.hero { background: linear-gradient(90deg,#f0f7ff,#f7fff6); padding: 28px 0; border-bottom: 1px solid #e6eef3; }
+			.hero-inner { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+			.quick-starts { display: grid; gap: 12px; grid-template-columns: 1fr; }
+			.quick-starts pre { margin: 6px 0 12px 0; }
+			.hero .note { margin-top: 6px; }
+			.container {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 2rem;
+			}
+			h1, h2 {
+			margin: 1.5rem 0 0.5rem 0;
+			color: #1e2a38;
+			}
+			h1 { font-size: 2rem; }
+			h2 { font-size: 1.5rem; }
+			.note { color: #555; font-size: 0.95rem; margin-bottom: 1rem; }
+			/* --- Marquee Styles --- */
+			.customMarquee {
+			overflow: hidden;
+			white-space: nowrap;
+			border-radius: 12px;
+			border: 1px solid #ddd;
+			background: #fff;
+			padding: 12px;
+			margin: 16px 0;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+			transition: box-shadow 0.3s ease;
+			}
+			.customMarquee:hover {
+			box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+			}
+			.marqueeInner {
+			display: inline-flex;
+			align-items: center;
+			will-change: transform;
+			}
+			.marquee-item {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 10px 16px;
+			margin-right: 12px;
+			border-radius: 50px;
+			background: #e0f7fa;
+			border: 1px solid #b2ebf2;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+			font-weight: 500;
+			color: #00796b;
+			white-space: nowrap;
+			transition: transform 0.3s, background 0.3s;
+			}
+			.marquee-item:hover {
+			transform: scale(1.05);
+			background: #b2ebf2;
+			}
+			.marquee-img-item {
+			display: inline-block;
+			border-radius: 8px;
+			margin-right: 20px;
+			border: 1px solid #ddd;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+			transition: transform 0.3s;
+			}
+			.marquee-img-item:hover {
+			transform: scale(1.05);
+			}
+			/* Paragraph item (for longer text blocks) */
+			.marquee-paragraph-item {
+				display: inline-block;
+				color: #5d4037;
+				font-size: 0.95rem;
+				line-height: 1.4;
+			}
+			/* --- Code & Documentation --- */
+			pre {
+			background: #1e293b;
+			color: #f8fafc;
+			border-radius: 8px;
+			padding: 1rem 2.5rem 1rem 1rem;
+			overflow-x: auto;
+			position: relative;
+			margin: 0.5rem 0 1.5rem 0;
+			}
+			code { font-family: monospace; }
+			/* Copy button */
+			.copy-btn {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: #00796b;
+			color: #fff;
+			border: none;
+			padding: 4px 8px;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 0.85rem;
+			transition: background 0.3s;
+			}
+			.copy-btn:hover {
+			background: #004d40;
+			}
+			/* striped table for documentation */
+			table.striped { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem 0; }
+			table.striped th, table.striped td { padding: 10px 12px; border: 1px solid #e6eef3; text-align: left; }
+			table.striped tbody tr:nth-child(odd) { background: #fbfdff; }
+			table.striped tbody tr:nth-child(even) { background: #f6f9fb; }
+			table.striped thead th { background: #e9f2f7; }
+			ul li {
+			margin-bottom: 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Hero header: full-width banner with quick start + important notes -->
+		<div class="hero">
+			<div class="hero-inner">
+				<h1>GSAP Marquee Demo</h1>
+				<p class="note">Requires <strong>GSAP</strong>. Hover or click to pause depending on settings. Multiple marquees are supported.</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<h2>Example 1: Text Marquee (Pause on Hover)</h2>
+			<div class="customMarquee" id="m1">
+				<div class="marqueeInner">
+					<div class="marquee-item">🍔 Burger</div>
+					<div class="marquee-item">🍕 Pizza</div>
+					<div class="marquee-item">🍣 Sushi</div>
+					<div class="marquee-item">🌯 Burrito</div>
+					<div class="marquee-item">🍜 Ramen</div>
+				</div>
+			</div>
+			<h2>Example 2: Pause on Click + Variable Speed</h2>
+			<div class="customMarquee" id="m2">
+				<div class="marqueeInner" style="gap: 10px;">
+					<div class="marquee-item">News 1</div>
+					<div class="marquee-item">Breaking 2</div>
+					<div class="marquee-item">Update 3</div>
+					<div class="marquee-item">Analysis 4</div>
+					<div class="marquee-item">Insight 5</div>
+				</div>
+			</div>
+			<h2>Example 3: Image Marquee</h2>
+			<div class="customMarquee" id="m3">
+				<div class="marqueeInner">
+					<img class="marquee-img-item" src="https://placehold.co/320x140/ccc/000?text=Photo+1" alt="Photo 1">
+					<img class="marquee-img-item" src="https://placehold.co/120x140/ccc/000?text=Photo+2" alt="Photo 2">
+					<img class="marquee-img-item" src="https://placehold.co/250x140/ccc/000?text=Photo+3" alt="Photo 3">
+					<img class="marquee-img-item" src="https://placehold.co/200x140/ccc/000?text=Photo+4" alt="Photo 4">
+				</div>
+			</div>
+				<h2>Example 4: Paragraph Marquee (long text blocks)</h2>
+				<div class="customMarquee" id="m4">
+					<div class="paragraphMarqueeInner">
+						<div class="marquee-paragraph-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</div>
+						<div class="marquee-paragraph-item">Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</div>
+						<div class="marquee-paragraph-item">Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.</div>
+						<div class="marquee-paragraph-item">Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue Rupash.</div>
+					</div>
+				</div>
+			<h1>Documentation</h1>
+			<section>
+				<h2>Features</h2>
+				<ul>
+					<li>Lightweight marquee using GSAP ticker for smooth 60fps animation.</li>
+					<li>Supports multiple marquees on the same page.</li>
+					<li>Accurate spacing using real DOM geometry (handles margins/paddings).</li>
+					<li>Options for direction, pause modes, variable speed, responsive rebuild, looping, and callbacks.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Options</h2>
+				<p>Pass an options object to <code>gsapMarquee(selector, options)</code> or use the jQuery plugin API.</p>
+				<table class="striped">
+					<thead>
+						<tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>speed</td><td>number</td><td>100</td><td>Pixels per second.</td></tr>
+						<tr><td>direction</td><td>string</td><td>'ltr'</td><td>'ltr' or 'rtl'. Controls movement direction.</td></tr>
+						<tr><td>pauseOnHover</td><td>boolean</td><td>true</td><td>Pause when mouse enters the marquee.</td></tr>
+						<tr><td>pauseOnClick</td><td>boolean</td><td>false</td><td>Toggle pause when marquee is clicked.</td></tr>
+						<tr><td>variableSpeed</td><td>boolean</td><td>false</td><td>On hover, slow down instead of pausing. (<strong>pauseOnHover</strong> must be true to <strong> variableSpeed</strong> work.)</td></tr>
+						<tr><td>startPaused</td><td>boolean</td><td>false</td><td>Start the marquee paused.</td></tr>
+						<tr><td>responsive</td><td>boolean</td><td>true</td><td>Rebuild clones and widths on window resize.</td></tr>
+						<tr><td>loop</td><td>boolean</td><td>true</td><td>Continuous looping (set false to run once).</td></tr>
+						<tr><td>containerSelector</td><td>string</td><td>'.customMarquee'</td><td>Selector for the inner wrapper containing items.</td></tr>
+						<tr><td>itemsSelector</td><td>string</td><td>'.marquee-item'</td><td>Selector for item nodes within the container.</td></tr>
+						<tr><td>onComplete</td><td>function</td><td>null</td><td>Callback when a non-looping marquee completes a cycle. Receives cycle count.</td></tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section>
+				<h2>API / Methods</h2>
+				<p>Each initialized marquee instance exposes the following methods:</p>
+				<table class="striped">
+					<thead>
+						<tr><th>Method</th><th>Args</th><th>Description</th></tr>
+					</thead>
+					<tbody>
+						<tr><td><code>pause()</code></td><td>—</td><td>Pause animation.</td></tr>
+						<tr><td><code>resume()</code></td><td>—</td><td>Resume animation.</td></tr>
+						<tr><td><code>isPaused()</code></td><td>—</td><td>Returns <code>true</code> if paused.</td></tr>
+						<tr><td><code>rebuild()</code></td><td>—</td><td>Recalculate widths and clones (call after DOM/content changes).</td></tr>
+						<tr><td><code>reverse()</code></td><td>—</td><td>Toggle direction between <code>ltr</code> and <code>rtl</code>.</td></tr>
+						<tr><td><code>destroy()</code></td><td>—</td><td>Cleanup event listeners and stop ticker for that instance.</td></tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section>
+				
+				<!-- Quick start copyable blocks -->
+				<div class="quick-starts">
+					<h3>1. Initialize a Marquee with jQuery</h3>
+<pre><button class="copy-btn">Copy</button><code>$('#yourMarquee').gsapMarquee({
+	speed: 100,                   // pixels per second
+	direction: "ltr",           // "ltr" or "rtl"
+	pauseOnHover: true,          // pause on hover
+	pauseOnClick: false,         // pause/resume on click
+	variableSpeed: false,        // on hover, slow instead of pause
+	startPaused: false,          // start paused
+	responsive: true,            // auto recalc on resize
+	loop: true,                  // infinite loop
+	containerSelector: '.marqueeInner',
+	itemsSelector: '.marquee-item',
+	onComplete: function(cycle){   // callback each loop
+		console.log("Cycle:", cycle);
+	}
+});</code></pre>
+					<h3>1. Initialize a Marquee with Vanilla</h3>
+<pre><button class="copy-btn">Copy</button><code>let instance = gsapMarquee('#m1', {
+    speed: 140,
+    direction: 'ltr',
+    pauseOnHover: true,
+    pauseOnClick: false,
+    variableSpeed: false,
+    startPaused: false,
+    responsive: true,
+    loop: true,
+    containerSelector: '.marqueeInner',
+    itemsSelector: '.marquee-item',
+    onComplete: function(cycle) { console.log('cycle', cycle); }
+});</code></pre>
+					<h3>3. Instance API</h3>
+<pre><button class="copy-btn">Copy</button><code>let instance = $('#yourMarquee').gsapMarquee();
+
+// Pause / Resume
+instance.pause();
+instance.resume();
+
+// Reverse direction at runtime
+instance.reverse();
+
+// Rebuild (recalculate widths, clones)
+instance.rebuild();
+
+// Destroy (cleanup)
+instance.destroy();</code></pre>
+					<h3>4. Image Marquee (imagesLoaded + setTimeout)</h3>
+					<p style="margin:0 0 6px 0;">
+						<strong>Important:</strong> Always ensure images are fully loaded before initializing image marquees — use <code><a href="https://imagesloaded.desandro.com/#install" target="_blank">imagesLoaded</a></code> and a short <code>setTimeout</code> to guarantee correct widths.
+					</p>
+<pre><button class="copy-btn">Copy</button><code>imagesLoaded('#imageMarquee', function() {
+    setTimeout(function() {
+        $('#imageMarquee').gsapMarquee({
+            speed: 100,
+            containerSelector: '.marqueeInner',
+            itemsSelector: '.marquee-img-item'
+        });
+    }, 0);
+});</code>
+					</pre>
+				</div>
+			</section>
+						<section>
+								<h2>Notes</h2>
+								<ul>
+										<li>Use <code>will-change: transform</code> on <code>.marqueeInner</code> for smoother animation and better compositing performance.</li>
+										<li>Images and web fonts must be loaded before initializing image/text marquees — use <code>imagesLoaded</code> or font loading APIs, then call a short <code>setTimeout</code> and initialize to ensure correct widths.</li>
+										<li>Hover pause is not reliable on touch devices. Provide a tap/click toggle or an explicit control for mobile users.</li>
+										<li>Avoid placing interactive controls (buttons/links/forms) inside continuously moving marquees. If you must, ensure the marquee pauses on <code>focus</code> so keyboard users can interact safely.</li>
+										<li>Keep the number of unique items moderate: clones multiply DOM nodes and can impact performance on low-end devices.</li>
+										<li>If you change content programmatically (images, text, or font loading), call the instance <code>rebuild()</code> so widths and clones are recalculated.</li>
+								</ul>
+
+								<h3>Practical snippets</h3>
+								<p class="note">Copy and paste these small helpers into your project where appropriate.</p>
+
+								<div class="quick-starts">
+										<h4>Respect prefers-reduced-motion</h4>
+										<pre><button class="copy-btn">Copy</button><code>if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	// honor reduced motion: start paused or reduce speed
+	opts = opts || {};
+	opts.startPaused = true; // or opts.speed = 0
+}
+let instance = gsapMarquee('#m', opts);</code></pre>
+
+										<h4>Pause on focus (keyboard accessibility)</h4>
+										<pre><button class="copy-btn">Copy</button><code>// Pause when any item receives keyboard focus
+instance.items.forEach(function(el){
+	el.addEventListener('focus', function(){ instance.pause(); }, true);
+	el.addEventListener('blur',  function(){ instance.resume(); }, true);
+});</code></pre>
+
+										<h4>Rebuild after dynamic content changes</h4>
+										<pre><button class="copy-btn">Copy</button><code>
+// Instance must be in scope
+let instance = gsapMarquee('#m1', {speed: 140});
+
+// After images or content change, give layout a moment then rebuild
+setTimeout(function(){
+	instance.rebuild();
+}, 50);</code></pre>
+								</div>
+						</section>
+		</div>
+		<!-- Dependencies -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+		<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+		<script src="src/gsap-marquee.js"></script>
+		<!-- Copy button functionality -->
+		<script>
+			document.querySelectorAll('.copy-btn').forEach(btn => {
+			  btn.addEventListener('click', () => {
+			    const code = btn.nextElementSibling;
+			    navigator.clipboard.writeText(code.innerText).then(() => {
+			      btn.innerText = 'Copied!';
+			      setTimeout(() => btn.innerText = 'Copy', 1500);
+			    });
+			  });
+			});
+		</script>
+		<script>
+			// Initialize marquees
+			// Helper to normalize returned instances (library returns single instance or array)
+			function singleInstance(v){ return Array.isArray(v) ? v[0] : v; }
+			
+			// Example 1: text marquee (pause on hover)
+			// let m1 = window.gsapMarquee('#m1', {
+			//   speed: 100,
+			//   pauseOnHover: true,
+			//   containerSelector: '.marqueeInner',
+			//   itemsSelector: '.marquee-item'
+			// });
+			
+			// Example 2: pause on click + higher speed
+			// The library doesn't implement pauseOnClick natively, so add a click toggle that calls the instance API.
+			
+			// let m2 = $('#m2').gsapMarquee({
+			//   	pauseOnHover: true,
+			// 	variableSpeed: true,
+			// 	startPaused: false,
+			// 	containerSelector: '.marqueeInner',
+			// 	itemsSelector: '.marquee-item',
+			// 	speed: 100,
+			// 	direction: 'rtl', 
+			// 	pauseOnClick: true,
+			// 	responsive: true,
+			// 	loop: true,
+			// 	onComplete: null
+			// });
+			
+			// Example 3: image marquee — wait for images to load then initialize
+			// let m3;
+			// if (window.imagesLoaded) {
+			//   imagesLoaded('#m3', function() {
+			//     // small timeout to ensure layout settled
+			//     setTimeout(function() {
+			//       m3 = window.gsapMarquee('#m3', {
+			//         speed: 80,
+			//         pauseOnHover: true,
+			//         containerSelector: '.marqueeInner',
+			//         itemsSelector: '.marquee-img-item',
+			//         gap: 20
+			//       });
+			//     }, 0);
+			//   });
+			// } else {
+			//   // fallback if imagesLoaded not available
+			//   m3 = window.gsapMarquee('#m3', {
+			//     speed: 80,
+			//     pauseOnHover: true,
+			//     containerSelector: '.marqueeInner',
+			//     itemsSelector: '.marquee-img-item',
+			//     gap: 20
+			//   });
+			// }
+
+			// Example 4: paragraph marquee (long text blocks)
+			let m4 = window.gsapMarquee('#m4', {
+				speed: 60,
+				pauseOnHover: true,
+				containerSelector: '.paragraphMarqueeInner',
+				itemsSelector: '.marquee-paragraph-item',
+				responsive: true,
+				loop: false
+			});
+		</script>
+	</body>
+</html>
