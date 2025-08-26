@@ -2,6 +2,8 @@
 
 Lightweight marquee utility built on GSAP. This repository includes a vanilla JS implementation (`src/gsap-marquee.js`) with a jQuery plugin wrapper, plus a demo (`demo/index.html`).
 
+Demo: https://rupashdas.github.io/GSAP-Marquee/
+
 Features
 
 - Smooth, ticker-driven animation using `gsap.ticker`.
