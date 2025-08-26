@@ -338,7 +338,7 @@ setTimeout(function(){
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 		<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-		<script src="src/gsap-marquee.js"></script>
+		<script src="../src/gsap-marquee.js"></script>
 		<!-- Copy button functionality -->
 		<script>
 			document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -357,55 +357,55 @@ setTimeout(function(){
 			function singleInstance(v){ return Array.isArray(v) ? v[0] : v; }
 			
 			// Example 1: text marquee (pause on hover)
-			// let m1 = window.gsapMarquee('#m1', {
-			//   speed: 100,
-			//   pauseOnHover: true,
-			//   containerSelector: '.marqueeInner',
-			//   itemsSelector: '.marquee-item'
-			// });
+			let m1 = window.gsapMarquee('#m1', {
+			  speed: 100,
+			  pauseOnHover: true,
+			  containerSelector: '.marqueeInner',
+			  itemsSelector: '.marquee-item'
+			});
 			
 			// Example 2: pause on click + higher speed
 			// The library doesn't implement pauseOnClick natively, so add a click toggle that calls the instance API.
 			
-			// let m2 = $('#m2').gsapMarquee({
-			//   	pauseOnHover: true,
-			// 	variableSpeed: true,
-			// 	startPaused: false,
-			// 	containerSelector: '.marqueeInner',
-			// 	itemsSelector: '.marquee-item',
-			// 	speed: 100,
-			// 	direction: 'rtl', 
-			// 	pauseOnClick: true,
-			// 	responsive: true,
-			// 	loop: true,
-			// 	onComplete: null
-			// });
+			let m2 = $('#m2').gsapMarquee({
+			  	pauseOnHover: true,
+				variableSpeed: true,
+				startPaused: false,
+				containerSelector: '.marqueeInner',
+				itemsSelector: '.marquee-item',
+				speed: 100,
+				direction: 'rtl', 
+				pauseOnClick: true,
+				responsive: true,
+				loop: true,
+				onComplete: null
+			});
 			
 			// Example 3: image marquee — wait for images to load then initialize
-			// let m3;
-			// if (window.imagesLoaded) {
-			//   imagesLoaded('#m3', function() {
-			//     // small timeout to ensure layout settled
-			//     setTimeout(function() {
-			//       m3 = window.gsapMarquee('#m3', {
-			//         speed: 80,
-			//         pauseOnHover: true,
-			//         containerSelector: '.marqueeInner',
-			//         itemsSelector: '.marquee-img-item',
-			//         gap: 20
-			//       });
-			//     }, 0);
-			//   });
-			// } else {
-			//   // fallback if imagesLoaded not available
-			//   m3 = window.gsapMarquee('#m3', {
-			//     speed: 80,
-			//     pauseOnHover: true,
-			//     containerSelector: '.marqueeInner',
-			//     itemsSelector: '.marquee-img-item',
-			//     gap: 20
-			//   });
-			// }
+			let m3;
+			if (window.imagesLoaded) {
+			  imagesLoaded('#m3', function() {
+			    // small timeout to ensure layout settled
+			    setTimeout(function() {
+			      m3 = window.gsapMarquee('#m3', {
+			        speed: 80,
+			        pauseOnHover: true,
+			        containerSelector: '.marqueeInner',
+			        itemsSelector: '.marquee-img-item',
+			        gap: 20
+			      });
+			    }, 0);
+			  });
+			} else {
+			  // fallback if imagesLoaded not available
+			  m3 = window.gsapMarquee('#m3', {
+			    speed: 80,
+			    pauseOnHover: true,
+			    containerSelector: '.marqueeInner',
+			    itemsSelector: '.marquee-img-item',
+			    gap: 20
+			  });
+			}
 
 			// Example 4: paragraph marquee (long text blocks)
 			let m4 = window.gsapMarquee('#m4', {
@@ -414,7 +414,7 @@ setTimeout(function(){
 				containerSelector: '.paragraphMarqueeInner',
 				itemsSelector: '.marquee-paragraph-item',
 				responsive: true,
-				loop: false
+				loop: true
 			});
 		</script>
 	</body>
